@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %} Update Movie {% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <h1>{{movie.title}} <small>({{movie.year}})</small></h1>
+    <a href="/del_title?id={{movie.id}}" class="waves-effect waves-light btn red lighten-1">DELETE</a>
+  </div>
+
+  <div>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  </div>
+
+<div class="row">
+  <div class="col s12 m12 l8">
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s6"><a class="active" href="#update_movie">Update Movie</a></li>
+          <li class="tab col s6"><a href="#update_crew">Update Crew</a></li>
+        </ul>
+      </div>
+
+      <div id="update_movie" class="col s12">
+        <div class="card">
+          <div class="card-panel cyan lighten-2">Update Movie</div>
+
+          <div class="container">
+            <form action="" method="post">{% csrf_token %}
+              <!-- {{ movieForm.as_p }} -->
+              <div class="row">
+                <div class="col s9">
+                  {{ movieForm.title.errors }}
+                  {{ movieForm.title.label_tag }}
+                  {{ movieForm.title }}
+                </div>
+                <div class="col s3">
+                  {{ movieForm.year.errors }}
+                  {{ movieForm.year.label_tag }}
+                  {{ movieForm.year }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+                  {{ movieForm.language.errors }}
+                  {{ movieForm.language.label_tag }}
+                  {{ movieForm.language }}
+                </div>
+                <div class="col s6">
+                  {{ movieForm.playtime.errors }}
+                  {{ movieForm.playtime.label_tag }}
+                  {{ movieForm.playtime }}
+                </div>
+              </div>
+              <div class="row">
+                {{ movieForm.tagline.errors }}
+                {{ movieForm.tagline.label_tag }}
+                {{ movieForm.tagline }}
+              </div>
+              <input type="submit" value="Update Movie" class="waves-effect waves-light btn blue lighten-1"/>
+            </form>
+            <br/>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="update_crew" class="col s12">
+        <div class="card">
+          <div class="card-panel cyan lighten-2">Update Crew</div>
+
+          <div class="container">
+            <form action="" method="post">{% csrf_token %}
+              {{ movieCrewFormSet.management_form }}
+              {% for movieCrewForm in movieCrewFormSet %}
+                <div class="card crew-formset">
+                  <div class="container">
+                    {{movieCrewForm.as_p}}
+                  </div>
+                </div>
+              {% endfor %}
+              <input type="submit" value="Update Crew" class="waves-effect waves-light btn blue lighten-1"/>
+            </form> <br/>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col s12 m12 l4">
+    <ul class="collection">
+      {% for artist in movieCrew %}
+      <li class="collection-item avatar">
+        <img src="images/yuna.jpg" alt="" class="circle">
+        <h6 class="title">{{artist.artist}}<br>
+        <small>{{artist.character_name}}</small></h6>
+        <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+      </li>
+
+        {{artist.role}}
+
+    {% endfor %}
+  </div>
+</div>
+    <!-- {% load staticfiles %}
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
+    <script>
+        $('.crew-formset').formset({
+            addText: 'add crew',
+            deleteText: 'remove'
+        });
+    </script> -->
+{% endblock %}

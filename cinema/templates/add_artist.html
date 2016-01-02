@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Add Artist {% endblock %}
+
+{% block content %}
+
+  <div>
+    {% for artist in artists %}
+      {{artist.first_name}} {{artist.last_name}}
+      {{artist.gender |title}}
+      {{artist.date_of_birth}}
+      {{artist.height |default_if_none:"N/A"}}
+      {{artist.eye_color |title}} <br/>
+    {% endfor %}
+  </div>
+
+  <form method="POST">{% csrf_token %}
+  {{artistForm.as_p}}
+  <input type="submit">
+  </form>
+
+{% endblock %}

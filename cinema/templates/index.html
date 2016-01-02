@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Movie {% endblock %}
+
+{% block content %}
+
+<h1>Movies</h1>
+<table>
+{% for movie in movies %}
+    <tr>
+      <td> <a href="/update_title/{{movie.id}}"/> {{movie.title}} </a> </td>
+      <td> {{movie.year}} </td>
+      <td> <a href="/del_title?id={{movie.id}}" class="waves-effect waves-light btn red lighten-1">DELETE</a> </td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

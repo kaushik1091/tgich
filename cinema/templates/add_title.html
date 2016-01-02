@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Add Movie {% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-panel cyan lighten-2">Add New Movie</div>
+  <div class="container">
+    <form method="POST">{% csrf_token %}
+      <label>{{movieForm.as_p}}
+      {{ movieCrewFormSet.management_form }}
+      <div class="card-action">
+        <input type="submit" class="waves-effect waves-light btn blue lighten-1"/>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

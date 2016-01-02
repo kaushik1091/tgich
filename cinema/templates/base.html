@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+      <title>{% block title %} TGICH {% endblock %}</title>
+    </head>
+
+    <body>
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating red" href="/add_title"><i class="material-icons">theaters</i></a></li>
+          <li><a class="btn-floating yellow darken-1" href="/add_artist"><i class="material-icons">perm_identity</i></a></li>
+          <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+          <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+      </div>
+
+      <ul id="main_dropdown" class="dropdown-content">
+        <li><a href="#!">Profile</a></li>
+        <li><a href="#!">Settings</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Log Out</a></li>
+      </ul>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">TGICH</a>
+
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </li>
+            <li><a href="add_title">Add Title</a></li>
+            <li><a href="#">Another link</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="main_dropdown">MyName<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Custom Content -->
+      <div id="content" class="container">
+        {% block content %}{% endblock %}
+      </div>
+
+      <!-- Base Footer -->
+      <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+    </body>
+  </html>
